@@ -1,0 +1,30 @@
+{
+  "name": "LangSplain",
+  "version": "0.0.1",
+  "description": "A Discord bot to get information about programming languages",
+  "main": "LangSplain.js",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodejs LangSplain.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/james-still/LangSplain"
+  },
+  "keywords": [
+    "discord",
+    "nodejs",
+    "lang",
+    "explanation",
+    "api"
+  ],
+  "author": "James Still",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/james-still/LangSplain/issues"
+  }
+}
