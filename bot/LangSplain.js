@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 function createEmbed(msg, language) {
   request('https://james-still.com/api.php?name=' + language, function(error, response, body) {
-    if (!error && response.statusCode == 200 && body != "NO VALID LANGUAGE PROVIDED") {
+    if (!error && response.statusCode == 200 && body != "") {
       var jsonInfo = JSON.parse(body);
       msg.channel.send({
         embed: {
@@ -23,18 +23,19 @@ function createEmbed(msg, language) {
 }
 
 function helpMessage(msg) {
-  msg.channel.send({
-    "embed": {
-      "title": "ABOUT LANGSPLAIN",
-      "description": "LangSplain is a bot that provides you valuable information about languages, type in a command below using the prefix `<>` to learn about a specific language.",
-      "color": 0xff000e,
-      "fields": [{
-        "name": "COMMANDS",
-        "value": "`<>HTML`\n\n`<>PHP`\n\n`<>CSS`\n\n`<>SQL`\n\n`<>JavaScript`\n\n`<>JSON`\n\n`<>Python`"
-      }],
-      "footer": {
-        "text": "more languages will be added soon..."
-      }
+  request('https://james-still.com/api.php?commands=1', function(error, response, body) {
+    if (!error && response.statusCode == 200 && body != "") {
+      msg.channel.send({
+        "embed": {
+          "title": "ABOUT LANGSPLAIN",
+          "description": "LangSplain is a bot that provides you valuable information about languages, type in a command below using the prefix `<>` to learn about a specific language.",
+          "color": 0xff000e,
+          "fields": [{
+            "name": "SUPPORTED LANGUAGES",
+            "value": "`\n" + body + "\n`"
+          }]
+        }
+      });
     }
   });
 }
