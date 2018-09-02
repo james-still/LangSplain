@@ -7,16 +7,22 @@ $languages = array(
   "SQL" => "SQL",
   "JavaScript" => "JavaScript",
   "JSON" => "JSON",
-  "Python_(programming_language)" => "Python",
+  "Python_(programming_language)" =>"Python",
   "Lua_(programming_language)" => "Lua",
   "Java_(programming_language)" => "Java",
   "C%2B%2B" => "CPP",
   "C_Sharp_(programming_language)" => "CSharp"
 );
 
+if(isset($_GET['commands']) && !isset($_GET['name'])) {
+  foreach($languages as $lang) {
+    echo $lang."\n";
+  }
+}
+
 if(isset($_GET['name']) && in_array($_GET['name'], $languages)) {
   // get wiki description of that language
-  $description = json_decode(file_get_contents("https://en.wikipedia.org/w/api.php?action=opensearch&search=".array_search($_GET['name'], $languages)."&limit=1&prop=pageimages&format=json"));
+  $description = json_decode(file_get_contents("https://en.wikipedia.org/w/api.php?action=opensearch&search=".array_search($_GET['name'], $languages)."&limit=1&format=json"));
   $description = $description[2][0];
 
   // return json content
@@ -25,8 +31,5 @@ if(isset($_GET['name']) && in_array($_GET['name'], $languages)) {
     "Description" => $description,
     "Logo" => "https://james-still.com/images/".$_GET['name'].".png"
   ), JSON_PRETTY_PRINT);
-} else {
-  // error message, no valid language was provided
-  echo "NO VALID LANGUAGE PROVIDED";
 }
 ?>
