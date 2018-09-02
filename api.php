@@ -7,7 +7,11 @@ $languages = array(
   "SQL" => "SQL",
   "JavaScript" => "JavaScript",
   "JSON" => "JSON",
-  "Python_(programming_language)" => "Python"
+  "Python_(programming_language)" => "Python",
+  "Lua_(programming_language)" => "Lua",
+  "Java_(programming_language)" => "Java",
+  "C%2B%2B" => "CPP",
+  "C_Sharp_(programming_language)" => "CSharp"
 );
 
 if(isset($_GET['name']) && in_array($_GET['name'], $languages)) {
